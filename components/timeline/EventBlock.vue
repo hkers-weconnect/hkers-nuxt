@@ -2,34 +2,44 @@
   <div class="event-block">
     <div class="media-news">
       <div class="banner-wrapper">
-        <div
-          class="banner"
-          :style="
-            `background-image: url('${require('~/assets/images/demo/timeline-1.jpg')}')`
-          "
+        <nuxt-link
+          :to="localePath({ name: 'timeline-uuid', params: { uuid: uuid } })"
         >
-          <div class="overlay"></div>
-          <div class="label">Side A</div>
-        </div>
+          <div
+            class="banner"
+            :style="
+              `background-image: url('${require('~/assets/images/demo/timeline-1.jpg')}')`
+            "
+          >
+            <div class="overlay"></div>
+            <div class="label">Side A</div>
+          </div>
+        </nuxt-link>
       </div>
     </div>
     <div class="official-news">
-      <div
-        class="banner"
-        :style="
-          `background-image: url('${require('~/assets/images/demo/timeline-2.jpg')}')`
-        "
+      <nuxt-link
+        :to="localePath({ name: 'timeline-uuid', params: { uuid: uuid } })"
       >
-        <div class="overlay"></div>
-        <div class="label">Side B</div>
-      </div>
+        <div
+          class="banner"
+          :style="
+            `background-image: url('${require('~/assets/images/demo/timeline-2.jpg')}')`
+          "
+        >
+          <div class="overlay"></div>
+          <div class="label">Side B</div>
+        </div>
+      </nuxt-link>
     </div>
 
     <div class="title-block">
       <div class="date">{{ parseDate(datetime) }}</div>
-      <!-- <nuxt-link :to="localePath({ name: 'timeline-id', params: { id: id } })"> -->
-      <div class="title" v-html="title" />
-      <!-- </nuxt-link> -->
+      <nuxt-link
+        :to="localePath({ name: 'timeline-uuid', params: { uuid: uuid } })"
+      >
+        <div class="title" v-html="title" />
+      </nuxt-link>
       <div class="tags">
         <div v-for="(tag, index) in tags" :key="index" class="tag">
           #{{ tag }}
@@ -45,6 +55,7 @@ import moment from 'moment';
 
 export default {
   props: {
+    uuid: String,
     datetime: String,
     title: String,
     tags: Array
@@ -77,6 +88,7 @@ export default {
   font-weight: bold;
   right: 15px;
   font-size: 1.2rem;
+  color: #fff;
 }
 
 .media-news {
@@ -149,6 +161,7 @@ export default {
   .title {
     font-weight: 500;
     font-size: 20px;
+    color: #fff;
   }
 
   .date {
