@@ -73,40 +73,6 @@ export default {
   },
   created() {
     this.$store.dispatch('api/timeline/bind');
-    // this.$store.commit('api/timeline/setList', [
-    //   {
-    //     id: '0',
-    //     title: 'test1',
-    //     tags: ['police', 'HK', 'China']
-    //   },
-    //   {
-    //     id: '1',
-    //     title: 'test2',
-    //     tags: ['HK']
-    //   },
-    //   {
-    //     id: '2',
-    //     title: 'test3',
-    //     tags: ['China', 'protester']
-    //   },
-    //   {
-    //     id: '3',
-    //     title: 'test4',
-    //     tags: [
-    //       'China',
-    //       'protester',
-    //       'asdf',
-    //       'pppasdlf',
-    //       'gsdfg',
-    //       'ggg',
-    //       'fff',
-    //       'ffggg',
-    //       'qqwer',
-    //       'rttk',
-    //       'asv'
-    //     ]
-    //   }
-    // ]);
   }
 };
 </script>

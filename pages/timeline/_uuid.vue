@@ -32,12 +32,12 @@
 
 <script>
 // import { TweenLite } from 'gsap';
-import DetailPage from '@/components/timeline/DetailPage.vue';
+import DetailPage from "@/components/timeline/DetailPage.vue";
 
-import scrollbar from '@/mixins/scrollbar';
+import scrollbar from "@/mixins/scrollbar";
 
 export default {
-  name: 'PageTimelineDetail',
+  name: "PageTimelineDetail",
   components: {
     DetailPage
   },
@@ -45,23 +45,30 @@ export default {
   data() {
     return {
       // temp
-      uuid: '7QvdPucSLJOPgAyoKt58',
-      mode: 'media-mode'
+      mode: "media-mode"
     };
+  },
+  computed: {
+    uuid() {
+      return this.$route.params.uuid;
+    }
   },
   watch: {
     mode(state) {
-      if (state === 'media-mode') {
-      } else if (state === 'official-mode') {
+      if (state === "media-mode") {
+      } else if (state === "official-mode") {
       }
     }
   },
+  created() {
+    this.$store.dispatch("api/timeline_detail/bind", this.uuid);
+  },
   methods: {
     switchMode() {
-      if (this.mode === 'media-mode') {
-        this.mode = 'official-mode';
-      } else if (this.mode === 'official-mode') {
-        this.mode = 'media-mode';
+      if (this.mode === "media-mode") {
+        this.mode = "official-mode";
+      } else if (this.mode === "official-mode") {
+        this.mode = "media-mode";
       }
     },
 

@@ -6,16 +6,15 @@
         `background-image: url(${require('~/assets/images/demo/timeline-detail.jpg')})`
       "
     />
-
     <div class="container">
       <section class="head-section">
-        <div class="h2 title">831 Prince Edward Station Choas</div>
+        <div class="h2 title">{{ detail.title }}</div>
         <div class="h4 datetime">Time: 2019年08月31日 10:34</div>
         <div class="h4 location">Location: Prince Edward Station</div>
         <div class="tags">
-          <span class="tag">#MTR </span>
-          <span class="tag">#protest </span>
-          <span class="tag">#accusation </span>
+          <span class="tag">#MTR</span>
+          <span class="tag">#protest</span>
+          <span class="tag">#accusation</span>
           <span class="tag">#hongkong</span>
         </div>
       </section>
@@ -50,7 +49,7 @@
 
           <!-- image with caption component -->
           <div class="template-image-caption">
-            <img src="@/assets/images/demo/timeline-detail-2.jpg" alt="" />
+            <img src="@/assets/images/demo/timeline-detail-2.jpg" alt />
             <div class="caption">
               Protesters set up a fire pit on the street in Mong Kok. Photo:
               Winson Wong
@@ -123,9 +122,7 @@
             while a woman next to him, who was believed to be his wife, tried to
             stop him.
           </p>
-          <p>
-            “His wife got stabbed in the abdomen,” a witness told media.
-          </p>
+          <p>“His wife got stabbed in the abdomen,” a witness told media.</p>
           <p>
             Another man told journalists he was injured by the man earlier. “It
             was too fast. I don't know if I was attacked by the steel bar or
@@ -173,9 +170,7 @@
 
         <!-- related and refernce -->
         <!-- related articles -->
-        <div class="related-list">
-          {{ relatedList('test') }}
-        </div>
+        <div class="related-list">{{ relatedList }}</div>
 
         <!-- reference -->
       </section>
@@ -186,8 +181,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import plyr from '@/mixins/plyr';
+import { mapGetters } from "vuex";
+import plyr from "@/mixins/plyr";
 
 export default {
   mixins: [plyr],
@@ -195,7 +190,7 @@ export default {
     mode: String
   },
   computed: {
-    ...mapGetters('api/timeline', ['relatedList'])
+    ...mapGetters("api/timeline_detail", ["relatedList", "detail"])
   }
 };
 </script>
@@ -213,7 +208,7 @@ export default {
   background-repeat: no-repeat;
 
   &:before {
-    content: '';
+    content: "";
     display: block;
     padding-top: calc(670 / 1770 * 100%);
   }
