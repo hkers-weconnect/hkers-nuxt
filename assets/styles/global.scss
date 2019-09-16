@@ -1,0 +1,116 @@
+// >>> global settings
+body {
+  @include h-body();
+  overflow: hidden;
+  background-color: #000;
+  color: #fff;
+}
+
+h1,
+.h1 {
+  @include h1();
+}
+
+h2,
+.h2 {
+  @include h2();
+}
+
+h3,
+.h3 {
+  @include h3();
+}
+
+h4,
+.h4 {
+  @include h4();
+}
+
+h5,
+.h5 {
+  @include h5();
+}
+
+h6,
+.h6 {
+  @include h6();
+}
+
+.h-small {
+  @include h-small();
+}
+
+a {
+  color: initial;
+}
+
+a:active,
+a:hover {
+  color: initial;
+  // text-decoration: none;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+}
+
+select {
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+}
+// >>> end of global settings
+
+// >>> color
+.bg-white {
+  background-color: #fff;
+}
+
+.text-white {
+  color: #fff;
+}
+// >>> end of color
+
+// >>> spacing
+// >>> end of spacing
+
+// >>> components
+// >>> >>> sort-select
+.sort-select {
+  position: relative;
+  cursor: pointer;
+
+  select {
+    color: #fff;
+    padding: 0.6em 0.7em 0.5em 0;
+    border: 0;
+    border-bottom: 1px solid $color-grey;
+    border-radius: 0;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 200px;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    transform: translateY(-25%);
+    border: 5px solid transparent;
+    border-top: 5px solid #fff;
+  }
+}
+// >>> >>> end of sort-select
+// >>> end of components

@@ -1,0 +1,116 @@
+// normal font set
+@mixin font() {
+  font-family: 'Roboto', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+// title
+@mixin h1() {
+  @include font();
+  font-size: 65px;
+
+  // add media to set responsive
+  // @media(max-width: $xl-max){
+  //   font-size: 50px;
+  // }
+}
+
+// section title
+@mixin h2() {
+  @include font();
+  font-size: 48px;
+
+  // add media to set responsive
+  // @media(max-width: $xl-max){
+  //   font-size: 40px;
+  // }
+}
+
+// slogan
+@mixin h3() {
+  @include font();
+  font-size: 30px;
+
+  // add media to set responsive
+  //  @media(max-width: $xl-max){
+  //     font-size: 36px;
+  //   }
+}
+
+// subhead
+@mixin h4() {
+  @include font();
+  font-size: 24px;
+
+  // add media to set responsive
+  //  @media(max-width: $xl-max){
+  //     font-size: 24px;
+  //   }
+}
+
+//
+@mixin h5() {
+  @include font();
+  // font-size: 24px;
+
+  // add media to set responsive
+  //  @media(max-width: $xl-max){
+  //     font-size: 20px;
+  //   }
+}
+
+//
+@mixin h6() {
+  @include font();
+  // font-size: 18px;
+
+  // add media to set responsive
+  //  @media(max-width: $xl-max){
+  //     font-size: 18px;
+  //   }
+}
+
+//
+@mixin h-small() {
+  @include font();
+  font-size: 12px;
+
+  // add media to set responsive
+  // @media(max-width: $lg-max){
+  //   font-size: 12px;
+  // }
+}
+
+// body
+@mixin h-body() {
+  @include font();
+  // font-size: 16px;
+
+  // add media to set responsive
+  // @media(max-width: $lg-max){
+  // font-size: 16px;
+  // }
+}
+
+// ratio block
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    display: block;
+    content: '';
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  & > .ratio-block-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

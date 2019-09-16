@@ -1,0 +1,12 @@
+// >>> smooth scrollbar
+
+// Override smooth scrollbar style sets
+.scroll-container[data-scrollbar] {
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+}
+// >>> end of smooth scrollbar
+
+// >>> plyr js
+@import 'node_modules/plyr/dist/plyr.css';

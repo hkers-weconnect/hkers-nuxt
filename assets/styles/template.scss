@@ -1,0 +1,86 @@
+.template-content {
+  position: relative;
+  margin-left: 50px;
+
+  // global sets
+  .caption {
+    margin-top: 0.5rem;
+    @include h-small();
+  }
+
+  // component - image with caption
+  .template-image-caption {
+    img {
+      width: 100%;
+    }
+  }
+
+  // component - quote
+  .template-quote {
+    position: relative;
+    margin: $template-component-margin;
+    padding: 1.5rem 1.5rem 1.5rem 3rem;
+    background-color: $template-bg-grey;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 1.5rem;
+      top: 1.5rem;
+      width: 3px;
+      bottom: 1.5rem;
+      background-color: $template-grey;
+    }
+
+    .source {
+      text-align: right;
+      margin-top: 1.5rem;
+
+      .source-link {
+        display: inline-block;
+        color: $template-text-light;
+      }
+
+      .date {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        @include h-small();
+
+        .link-icon {
+          margin-left: 0.5rem;
+          width: 15px;
+          height: 15px;
+          background-color: $template-grey;
+        }
+      }
+    }
+  }
+
+  // component - callout
+  .template-callout {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: $template-component-margin;
+    padding: 1.5rem;
+    padding-left: 3rem;
+    background-color: $template-bg-grey;
+    text-decoration: underline;
+
+    .link-icon {
+      position: absolute;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      background-color: $template-grey;
+    }
+  }
+
+  // component - youtube
+  .template-youtube {
+    margin: $template-component-margin;
+  }
+}

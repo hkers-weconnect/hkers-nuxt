@@ -1,0 +1,230 @@
+// variables
+$primary-color: #000; // main color
+$readonly-color: #707070; // main color
+$placeholder-color: $color-grey; // label color
+$border-color: #fff; // border color
+$error-color: red; // validated error color
+$rc-bg: #fff; // radio box and checkbox background
+$rc-validating-bg: #fff; // radio box and checkbox background
+$rc-border: #bcbcbc; // radio box and checkbox background
+$text-color: #fff;
+
+label {
+  margin-bottom: 0;
+  z-index: -1;
+}
+
+.form-field-row {
+  margin-bottom: 40px;
+
+  @media (max-width: $mobile-max) {
+    margin-bottom: 3rem;
+  }
+}
+
+.form-field-space-small {
+  margin: 10px 0;
+}
+
+// radio button
+.form-statement-title {
+  @include h6();
+  font-weight: 500;
+}
+
+.form-statement-content {
+  margin: 15px;
+}
+
+.form-field-wrapper {
+  position: relative;
+
+  // error message
+  .error-msg {
+    color: $error-color;
+  }
+
+  // input => effect label
+  label.ef-label {
+    @include h5();
+    position: absolute;
+    left: 0;
+    top: 0px;
+    color: $placeholder-color;
+    opacity: 1;
+    transition: opacity 0s, left 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
+
+  &:focus label.ef-label,
+  &.__focused label.ef-label {
+    left: 5px;
+  }
+
+  &.__inputted label.ef-label {
+    // top: -36px;
+    opacity: 0;
+  }
+
+  // input
+  input {
+    @include h5();
+
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 5px;
+    background-color: transparent;
+    border-radius: 0;
+    color: $text-color;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:read-only {
+      background-color: $readonly-color;
+    }
+
+    &:-internal-autofill-selected {
+      background-color: transparent !important;
+    }
+  }
+
+  // textarea
+  textarea {
+    @include h5();
+
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 5px;
+    background-color: transparent;
+    border-radius: 0;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:read-only {
+      background-color: $readonly-color;
+    }
+  }
+
+  // radio button
+  .radio-button {
+    position: relative;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    label {
+      padding-left: 30px;
+      cursor: pointer;
+    }
+
+    .radio-circle {
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      transform: translate(0, -50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid $rc-border;
+      background-color: $rc-bg;
+
+      .radio-dot {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        background-color: $primary-color;
+        border-radius: 50%;
+        opacity: 0;
+        transition: 0.2s ease;
+      }
+    }
+
+    &.__selected .radio-dot {
+      opacity: 1;
+    }
+
+    &.__validating .radio-circle {
+      background-color: $rc-validating-bg;
+    }
+  }
+
+  &.radio-field-wrapper {
+    margin-left: 15px;
+  }
+
+  // checkbox
+  .checkbox {
+    position: relative;
+    cursor: pointer;
+
+    label {
+      padding-left: 30px;
+      cursor: pointer;
+    }
+
+    .checkbox-box {
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      transform: translate(0, -50%);
+      width: 16px;
+      height: 16px;
+      border: 1px solid $rc-border;
+      background-color: $rc-bg;
+
+      .checkbox-tick {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px;
+        height: 10px;
+        color: $primary-color;
+        opacity: 0;
+        transition: 0.2s ease;
+      }
+    }
+
+    &.circle .checkbox-box {
+      border-radius: 50%;
+    }
+
+    &.__checked .checkbox-tick {
+      opacity: 1;
+    }
+
+    &.__validating .checkbox-box {
+      background-color: $rc-validating-bg;
+    }
+  }
+}
+
+// icons
+.form-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    vertical-align: unset;
+  }
+
+  // add icons for your project
+  &.search {
+    transform: translateY(-60%);
+    width: 18px;
+    height: 18px;
+  }
+}
