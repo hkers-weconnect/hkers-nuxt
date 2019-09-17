@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import form from '@/components/forms/form';
+import form from "@/components/forms/form";
 
 export default {
   mixins: [form],

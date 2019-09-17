@@ -27,9 +27,9 @@
           :selected="item.selected"
           @click="onTagClick(index)"
         >
-          <template v-if="index === limitedTags">
-            more
-          </template>
+          <template v-if="index === limitedTags"
+            >more</template
+          >
           <template v-else>
             #{{ item.tag }}
             <Cross />
@@ -41,12 +41,12 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-import Input from '@/components/forms/Input.vue';
-import Cross from '@/components/svg/icons/Cross.vue';
+import { mapMutations } from "vuex";
+import Input from "@/components/forms/Input.vue";
+import Cross from "@/components/svg/icons/Cross.vue";
 
 export default {
-  name: 'SearchBox',
+  name: "SearchBox",
   components: {
     Input,
     Cross
@@ -58,14 +58,14 @@ export default {
   },
   data() {
     return {
-      value: '',
+      value: "",
       canSelectTags: false,
       hoveredTag: -1,
       limitedTags: 10
     };
   },
   methods: {
-    ...mapMutations('api/timeline', ['addSearchTag', 'removeSearchTag']),
+    ...mapMutations("api/timeline", ["addSearchTag", "removeSearchTag"]),
 
     updateSearchTag(index) {
       // stop when press Enter on "more" tag
@@ -75,17 +75,17 @@ export default {
         return;
       }
 
-      const tag = this.$refs.tags.querySelectorAll('.tag')[index];
+      const tag = this.$refs.tags.querySelectorAll(".tag")[index];
 
-      if (tag.hasAttribute('selected')) {
-        this.removeSearchTag(tag.getAttribute('data-tag'));
+      if (tag.hasAttribute("selected")) {
+        this.removeSearchTag(tag.getAttribute("data-tag"));
 
         // console.log(index, length);
         if (index >= length - 1) {
           index = index - 1;
         }
       } else {
-        this.addSearchTag(tag.getAttribute('data-tag'));
+        this.addSearchTag(tag.getAttribute("data-tag"));
       }
     },
 
@@ -98,7 +98,7 @@ export default {
     onInput() {
       // reset hovered tag
       this.hoveredTag = -1;
-      this.$emit('input', this.value);
+      this.$emit("input", this.value);
     },
 
     onTagClick(index) {
@@ -111,23 +111,23 @@ export default {
         return;
       }
 
-      const length = this.$refs.tags.querySelectorAll('.tag').length;
+      const length = this.$refs.tags.querySelectorAll(".tag").length;
       // console.log(code, this.hoveredTag);
 
-      if (code === 'Enter') {
+      if (code === "Enter") {
         // continue if hover any tag
         if (this.hoveredTag !== -1) {
           this.updateSearchTag(this.hoveredTag);
         }
       }
 
-      if (code === 'ArrowDown') {
+      if (code === "ArrowDown") {
         if (this.hoveredTag < length - 1) {
           this.hoveredTag = this.hoveredTag + 1;
         }
       }
 
-      if (code === 'ArrowUp') {
+      if (code === "ArrowUp") {
         if (this.hoveredTag > -1) {
           this.hoveredTag = this.hoveredTag - 1;
         }

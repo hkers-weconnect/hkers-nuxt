@@ -9,7 +9,7 @@
 
 // used for store the 'smooth-scrollbar' library
 // let Scrollbar; ssr
-import Scrollbar from 'smooth-scrollbar';
+import Scrollbar from "smooth-scrollbar";
 
 export default {
   data() {
@@ -30,7 +30,7 @@ export default {
      * init the scrollbar instance
      */
     initScrollbars() {
-      this.$el.querySelectorAll('[ef-scrollbar]').forEach((scrollbar) => {
+      this.$el.querySelectorAll("[ef-scrollbar]").forEach(scrollbar => {
         this.scrollbars.push(Scrollbar.init(scrollbar));
       });
     },
@@ -39,7 +39,7 @@ export default {
      * destroy the scrollbar instance before destroy the component
      */
     destroyScrollbars() {
-      this.scrollbars.forEach((scrollbar) => Scrollbar.destroy(scrollbar));
+      this.scrollbars.forEach(scrollbar => Scrollbar.destroy(scrollbar));
     }
   }
 };

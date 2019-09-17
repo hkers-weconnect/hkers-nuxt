@@ -25,7 +25,7 @@ export const getters = {
       state: "",
       tags: "",
       title: "",
-      uui: ""
+      uuid: ""
     };
   },
 

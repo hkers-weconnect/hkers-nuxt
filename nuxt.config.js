@@ -1,12 +1,12 @@
-require('dotenv').config();
+require("dotenv").config();
 
 module.exports = {
-  mode: 'spa',
+  mode: "spa",
 
   server: {
     port:
-      process.env.PORT || (process.env.NODE_ENV !== 'production' ? 3000 : 3001),
-    host: '0.0.0.0'
+      process.env.PORT || (process.env.NODE_ENV !== "production" ? 3000 : 3001),
+    host: "0.0.0.0"
   },
 
   env: {
@@ -23,22 +23,22 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: process.env.npm_package_name || "",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
+        hid: "description",
+        name: "description",
+        content: process.env.npm_package_description || ""
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
-        rel: 'stylesheet',
+        rel: "stylesheet",
         href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap'
+          "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
       }
     ]
   },
@@ -46,21 +46,21 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: "#fff" },
 
   /*
    ** Global CSS
    */
   css: [
-    '@/assets/styles/_variables.scss',
-    '@/assets/styles/_mixins.scss'
+    "@/assets/styles/_variables.scss",
+    "@/assets/styles/_mixins.scss"
     // '@/assets/styles/_functions.scss'
   ],
   styleResources: {
     // your settings here
     scss: [
-      '@/assets/styles/_variables.scss',
-      '@/assets/styles/_mixins.scss'
+      "@/assets/styles/_variables.scss",
+      "@/assets/styles/_mixins.scss"
       // '@/assets/styles/_functions.scss'
     ]
   },
@@ -70,11 +70,12 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '@/plugins/styles',
-    '@/plugins/router',
-    '@/plugins/axios',
-    '@/plugins/vuefire',
-    '@/plugins/vue-click-outside'
+    "@/plugins/styles",
+    "@/plugins/router",
+    "@/plugins/axios",
+    "@/plugins/vuefire",
+    "@/plugins/vue-click-outside",
+    "@/plugins/moment-locales"
     // { src: '@/plugins/scrollmagic', ssr: false },
     // { src: '@/plugins/fullpage', ssr: false }
   ],
@@ -84,8 +85,8 @@ module.exports = {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
-    '@nuxtjs/style-resources'
+    "@nuxtjs/eslint-module",
+    "@nuxtjs/style-resources"
   ],
 
   /*
@@ -93,32 +94,32 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    'nuxt-fullpage.js',
+    "@nuxtjs/axios",
+    "nuxt-fullpage.js",
     [
-      'nuxt-i18n',
+      "nuxt-i18n",
       {
         locales: [
           {
-            code: 'en',
-            file: 'en',
-            iso: 'en-US'
+            code: "en",
+            file: "en",
+            iso: "en-US"
           },
           {
-            code: 'sc',
-            file: 'sc',
-            iso: 'zh-Hans'
+            code: "sc",
+            file: "sc",
+            iso: "zh-Hans"
           },
           {
-            code: 'tc',
-            file: 'tc',
-            iso: 'zh-Hant'
+            code: "tc",
+            file: "tc",
+            iso: "zh-Hant"
           }
         ],
-        strategy: 'prefix_and_default',
-        defaultLocale: 'en',
+        strategy: "prefix_and_default",
+        defaultLocale: "en",
         lazy: true,
-        langDir: 'lang/'
+        langDir: "lang/"
       }
     ]
   ],
@@ -138,7 +139,7 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    transpile: ['swiper', 'dom7']
+    transpile: ["swiper", "dom7"]
     // extend(config, ctx) {}
   }
 };

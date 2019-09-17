@@ -51,27 +51,27 @@ export default {
   },
   data() {
     return {
-      selectedValue: '',
+      selectedValue: "",
       skipIfEmpty: true
     };
   },
   methods: {
     // actions
     getValue() {
-      return this.$refs['radio-group'].querySelector('input:checked').value;
+      return this.$refs["radio-group"].querySelector("input:checked").value;
     },
 
     reset() {
       this.isInputted = false;
-      this.selectedValue = '';
-      this.$refs['radio-group']
-        .querySelectorAll('input')
-        .forEach((element) => (element.checked = false));
+      this.selectedValue = "";
+      this.$refs["radio-group"]
+        .querySelectorAll("input")
+        .forEach(element => (element.checked = false));
     },
 
     // events
     onRadioClick(value) {
-      this.$refs['radio-group'].querySelector(`#${value}`).checked = true;
+      this.$refs["radio-group"].querySelector(`#${value}`).checked = true;
       this.selectedValue = value;
 
       this.isInputted = true;

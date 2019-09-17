@@ -18,9 +18,7 @@
           }"
           @click="onCheckboxClick(option.value)"
         >
-          <label :for="id || name">
-            {{ option.label }}
-          </label>
+          <label :for="id || name">{{ option.label }}</label>
           <div class="checkbox-box">
             <no-ssr>
               <font-awesome-icon icon="check" class="checkbox-tick" />
@@ -46,8 +44,8 @@
 </template>
 
 <script>
-import lodash from 'lodash';
-import form from '@/components/forms/form';
+import lodash from "lodash";
+import form from "@/components/forms/form";
 
 export default {
   mixins: [form],
@@ -63,9 +61,9 @@ export default {
   },
   methods: {
     onCheckboxClick(value) {
-      const checked = this.$refs['checkbox-group'].querySelector(`#${value}`)
+      const checked = this.$refs["checkbox-group"].querySelector(`#${value}`)
         .checked;
-      this.$refs['checkbox-group'].querySelector(
+      this.$refs["checkbox-group"].querySelector(
         `#${value}`
       ).checked = !checked;
 
@@ -86,7 +84,7 @@ export default {
     },
     removeChecked(value) {
       if (this.hasChecked(value)) {
-        lodash.remove(this.checked, (el) => el === value);
+        lodash.remove(this.checked, el => el === value);
       }
     },
     hasChecked(value) {
@@ -101,7 +99,7 @@ export default {
 
     reset() {
       this.checked = [];
-      this.$refs.field.forEach((el) => (el.checked = false));
+      this.$refs.field.forEach(el => (el.checked = false));
     }
   }
 };

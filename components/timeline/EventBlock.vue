@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import moment from "moment";
 
 export default {
   props: {
@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     parseDate(date) {
-      return moment(date).format('D MMMM YYYY');
+      return moment(date).format("D MMMM YYYY");
     }
   }
 };
@@ -136,7 +136,7 @@ export default {
     );
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       top: 0;

@@ -42,8 +42,8 @@
 </template>
 
 <script>
-import form from '@/components/forms/form';
-import SearchSVG from '@/components/svg/icons/SearchSVG.vue';
+import form from "@/components/forms/form";
+import SearchSVG from "@/components/svg/icons/SearchSVG.vue";
 
 export default {
   components: {
@@ -53,7 +53,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'text'
+      default: "text"
     },
     autocomplete: {
       type: Boolean,
@@ -62,7 +62,7 @@ export default {
   },
   data() {
     return {
-      value: ''
+      value: ""
     };
   },
   watch: {
@@ -74,11 +74,11 @@ export default {
     // events
     onFieldWrapperClick() {
       this.focus();
-      this.$emit('onFieldWrapperClick');
+      this.$emit("onFieldWrapperClick");
     },
 
     onFieldClick() {
-      this.$emit('onFieldClick');
+      this.$emit("onFieldClick");
     },
 
     onClickOutside() {
@@ -90,13 +90,13 @@ export default {
     },
 
     reset() {
-      this.value = '';
+      this.value = "";
     },
 
     onkeydown(e) {
       // console.log(e);
 
-      this.$emit('onkeydown', e);
+      this.$emit("onkeydown", e);
     }
   }
 };

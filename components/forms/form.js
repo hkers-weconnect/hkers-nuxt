@@ -5,8 +5,8 @@
  * Only handling form validation and focus event
  *
  */
-import { mapState } from 'vuex';
-import { CAN_SKIP_INPUT_TYPE, CAN_SKIP_FIELD } from '@/constants/form';
+import { mapState } from "vuex";
+import { CAN_SKIP_INPUT_TYPE, CAN_SKIP_FIELD } from "@/constants/form";
 
 export default {
   props: {
@@ -33,7 +33,7 @@ export default {
   },
 
   computed: {
-    ...mapState('form', ['isValidating']),
+    ...mapState("form", ["isValidating"]),
     getTagName() {
       return this.$refs.field.tagName.toLocaleLowerCase();
     }
@@ -66,7 +66,7 @@ export default {
     },
 
     getArrayStringForNova(array) {
-      return `[${array.map((el) => '"' + el + '"').join(',')}]`;
+      return `[${array.map(el => '"' + el + '"').join(",")}]`;
     },
 
     // used for server side validation
@@ -79,12 +79,12 @@ export default {
       this.isFocused = true;
       this.$refs.field.focus();
 
-      this.$emit('onFieldFocus');
+      this.$emit("onFieldFocus");
     },
     blur() {
       this.isFocused = false;
 
-      this.$emit('onFieldBlur');
+      this.$emit("onFieldBlur");
     },
 
     // validation
@@ -99,7 +99,7 @@ export default {
       // start
       let pass = true;
 
-      if (this.hasRule('required')) {
+      if (this.hasRule("required")) {
         if (!this.isInputted) {
           this.errors.push(`This field is required`);
           pass = false;
@@ -115,7 +115,7 @@ export default {
         return result;
       }
 
-      this.rules.split('|').forEach((rule) => {
+      this.rules.split("|").forEach(rule => {
         if (rule.startsWith(type)) {
           result = true;
         }

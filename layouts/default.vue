@@ -1,23 +1,15 @@
 <template>
   <div>
-    <!-- <ul style="position: fixed; z-index: 999;">
-      <li>
-        <nuxt-link to="/">home</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/test">test</nuxt-link>
-      </li>
-    </ul> -->
-
     <nuxt />
   </div>
 </template>
 
 <script>
-import responsive from '@/mixins/responsive';
+import responsive from "@/mixins/responsive";
+import appinit from "@/mixins/appinit";
 
 export default {
-  name: 'App',
-  mixins: [responsive]
+  name: "App",
+  mixins: [responsive, appinit]
 };
 </script>

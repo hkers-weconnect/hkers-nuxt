@@ -1,7 +1,6 @@
 <template>
   <button class="submit-button" type="submit">
     Submit
-
     <div class="icon-wrapper ml-3">
       <transition name="fade" mode="out-in" :duration="200">
         <div v-if="isValidating" class="lds-roller">
@@ -21,13 +20,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import ArrowRight from '@/components/svg/icons/ArrowRight.vue';
+import { mapState } from "vuex";
+import ArrowRight from "@/components/svg/icons/ArrowRight.vue";
 
 export default {
   components: { ArrowRight },
   computed: {
-    ...mapState('form', ['isValidating'])
+    ...mapState("form", ["isValidating"])
   }
 };
 </script>

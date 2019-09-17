@@ -32,20 +32,20 @@
 </template>
 
 <script>
-import form from '@/components/forms/form';
+import form from "@/components/forms/form";
 
 export default {
   mixins: [form],
   props: {
     rows: {
       type: String,
-      default: '5'
+      default: "5"
     },
     required: Boolean
   },
   data() {
     return {
-      value: '',
+      value: "",
       isFocused: false
     };
   },
@@ -58,11 +58,11 @@ export default {
     // events
     onFieldWrapperClick() {
       this.focus();
-      this.$emit('onFieldWrapperClick');
+      this.$emit("onFieldWrapperClick");
     },
 
     onFieldClick() {
-      this.$emit('onFieldClick');
+      this.$emit("onFieldClick");
     },
 
     onClickOutside() {
@@ -74,7 +74,7 @@ export default {
     },
 
     reset() {
-      this.value = '';
+      this.value = "";
     }
   }
 };

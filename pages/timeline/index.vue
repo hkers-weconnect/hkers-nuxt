@@ -38,15 +38,15 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
-import SearchBox from '@/components/forms/SearchBox.vue';
-import EventBlock from '@/components/timeline/EventBlock.vue';
-import Select from '@/components/forms/Select.vue';
+import { mapState, mapGetters } from "vuex";
+import SearchBox from "@/components/forms/SearchBox.vue";
+import EventBlock from "@/components/timeline/EventBlock.vue";
+import Select from "@/components/forms/Select.vue";
 
-import scrollbar from '@/mixins/scrollbar';
+import scrollbar from "@/mixins/scrollbar";
 
 export default {
-  name: 'PageTimeline',
+  name: "PageTimeline",
   components: {
     SearchBox,
     EventBlock,
@@ -55,24 +55,24 @@ export default {
   mixins: [scrollbar],
   data() {
     return {
-      searchValue: '',
-      sortValue: ''
+      searchValue: "",
+      sortValue: ""
     };
   },
   computed: {
-    ...mapState('api/timeline', ['list']),
-    ...mapGetters('api/timeline', ['searchedList', 'allTags', 'matchedTags'])
+    ...mapState("api/timeline", ["list"]),
+    ...mapGetters("api/timeline", ["searchedList", "allTags", "matchedTags"])
   },
   watch: {
     searchValue(value) {
-      this.$store.commit('api/timeline/updateSearchTitle', value);
+      this.$store.commit("api/timeline/updateSearchTitle", value);
     },
     sortValue(value) {
-      this.$store.commit('api/timeline/updateSort', value);
+      this.$store.commit("api/timeline/updateSort", value);
     }
   },
   created() {
-    this.$store.dispatch('api/timeline/bind');
+    this.$store.dispatch("api/timeline/bind");
   }
 };
 </script>

@@ -1,5 +1,5 @@
-import { mapState } from 'vuex';
-import { TweenLite } from 'gsap';
+import { mapState } from "vuex";
+import { TweenLite } from "gsap";
 
 export default {
   data() {
@@ -9,7 +9,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('responsive', ['isMobile'])
+    ...mapState("responsive", ["isMobile"])
   },
   created() {
     this.addListener();
@@ -18,7 +18,7 @@ export default {
     this.removeListener();
 
     // destroy all tweens
-    this.tweens.forEach((tween) => tween.kill());
+    this.tweens.forEach(tween => tween.kill());
   },
   watch: {
     isMobile(state) {
@@ -33,24 +33,24 @@ export default {
   },
   methods: {
     addListener() {
-      window.addEventListener('mousemove', this.onMouseMove);
+      window.addEventListener("mousemove", this.onMouseMove);
     },
     removeListener() {
-      window.removeEventListener('mousemove', this.onMouseMove);
+      window.removeEventListener("mousemove", this.onMouseMove);
       this.resetIt();
     },
 
     onMouseMove(e) {
-      const elements = this.$refs.scene.querySelectorAll('[ef-mouse-parallax]');
+      const elements = this.$refs.scene.querySelectorAll("[ef-mouse-parallax]");
 
-      elements.forEach((element) => {
-        let movement = element.hasAttribute('ef-depth') || 50;
-        movement = parseInt(element.getAttribute('ef-depth'));
+      elements.forEach(element => {
+        let movement = element.hasAttribute("ef-depth") || 50;
+        movement = parseInt(element.getAttribute("ef-depth"));
 
         // validate ef-depth value is int number value
         if (isNaN(movement)) {
           console.log(
-            '[error] ef-mouse-parallax depth is not a float number!',
+            "[error] ef-mouse-parallax depth is not a float number!",
             element
           );
           return;
@@ -80,9 +80,9 @@ export default {
 
     // reposition the element to origin place
     resetIt() {
-      const elements = this.$refs.scene.querySelectorAll('[ef-mouse-parallax]');
+      const elements = this.$refs.scene.querySelectorAll("[ef-mouse-parallax]");
 
-      elements.forEach((element) => {
+      elements.forEach(element => {
         TweenLite.to(element, 0.5, {
           x: 0,
           y: 0

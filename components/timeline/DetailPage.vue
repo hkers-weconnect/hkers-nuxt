@@ -9,7 +9,7 @@
     <div class="container">
       <section class="head-section">
         <div class="h2 title">{{ detail.title }}</div>
-        <div class="h4 datetime">Time: 2019年08月31日 10:34</div>
+        <div class="h4 datetime">Time: {{ datetime }}</div>
         <div class="h4 location">Location: Prince Edward Station</div>
         <div class="tags">
           <span class="tag">#MTR</span>
@@ -181,16 +181,31 @@
 </template>
 
 <script>
+import moment from "moment";
+
 import { mapGetters } from "vuex";
 import plyr from "@/mixins/plyr";
 
 export default {
   mixins: [plyr],
   props: {
-    mode: String
+    mode: String,
+
+    // detail field;
+    uuid: String,
+    title: String,
+    content: String,
+    date: String,
+    image: String,
+    video: String,
+    sourceLink: Array,
+    sourceName: String
   },
   computed: {
-    ...mapGetters("api/timeline_detail", ["relatedList", "detail"])
+    ...mapGetters("api/timeline_detail", ["relatedList", "detail"]),
+    datetime() {
+      return moment(this.detail.datetime).format("lll");
+    }
   }
 };
 </script>

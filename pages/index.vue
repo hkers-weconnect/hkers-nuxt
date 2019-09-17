@@ -6,9 +6,9 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: "Home",
   fetch({ params, redirect }) {
-    redirect(301, '/timeline');
+    redirect(301, "/timeline");
   }
 };
 </script>

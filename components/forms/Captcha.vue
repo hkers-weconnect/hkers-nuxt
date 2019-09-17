@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex align-items-center">
     <Reload class="reload-img" @click.native="loadCaptcha" />
-    <img class="captcha-img mx-3" :src="captcha.img" alt="" />
+    <img class="captcha-img mx-3" :src="captcha.img" alt />
     <Input
       ref="field"
       class="captcha-input"
@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import Reload from '@/components/svg/icons/Reload.vue';
-import Input from '@/components/forms/Input.vue';
+import { mapState } from "vuex";
+import Reload from "@/components/svg/icons/Reload.vue";
+import Input from "@/components/forms/Input.vue";
 
 export default {
   components: {
@@ -26,7 +26,7 @@ export default {
     rules: String
   },
   computed: {
-    ...mapState('api/form', ['captcha']),
+    ...mapState("api/form", ["captcha"]),
     getTagName() {
       return this.$refs.field.getTagName;
     }
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     loadCaptcha() {
-      this.$store.dispatch('api/form/fetchCaptcha');
+      this.$store.dispatch("api/form/fetchCaptcha");
     },
 
     validate() {
