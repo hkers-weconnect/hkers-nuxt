@@ -29,7 +29,7 @@
         <div class="my-5">
           <!-- result element -->
           <div v-for="item in searchedList" :key="item.id">
-            <EventBlock v-bind="item" />
+            <EventBlock :id="item.id" v-bind="item" />
           </div>
         </div>
       </div>

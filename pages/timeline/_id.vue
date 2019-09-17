@@ -4,7 +4,7 @@
     <div class="media-layer layer">
       <div class="layer-container">
         <div ref="scrollbar" class="scroll-container" ef-scrollbar>
-          <DetailPage v-bind="detail.media_news" />
+          <DetailPage v-bind="mediaDetail" />
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
     <div class="official-layer layer">
       <div class="layer-container">
         <div ref="scrollbar" class="scroll-container" ef-scrollbar>
-          <DetailPage v-bind="detail.official_news" />
+          <DetailPage v-bind="officialDetail" />
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
 
 <script>
 // import { TweenLite } from 'gsap';
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 import DetailPage from "@/components/timeline/DetailPage.vue";
 
 import scrollbar from "@/mixins/scrollbar";
@@ -50,9 +50,9 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("api/timeline_detail", ["detail"]),
-    uuid() {
-      return this.$route.params.uuid;
+    ...mapState("api/timeline_detail", ["mediaDetail", "officialDetail"]),
+    id() {
+      return this.$route.params.id;
     }
   },
   watch: {
@@ -63,7 +63,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("api/timeline_detail/bind", this.uuid);
+    this.$store.dispatch("api/timeline_detail/bind", this.id);
   },
   methods: {
     switchMode() {

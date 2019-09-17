@@ -5,25 +5,30 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: "babel-eslint"
   },
   extends: [
-    '@nuxtjs',
-    'plugin:nuxt/recommended',
-    'plugin:prettier/recommended',
-    'prettier',
-    'prettier/vue'
+    "@nuxtjs",
+    "plugin:nuxt/recommended",
+    "plugin:prettier/recommended",
+    "prettier",
+    "prettier/vue"
   ],
-  plugins: [
-    'prettier'
-  ],
+  plugins: ["prettier"],
   // add your custom rules here
   rules: {
-    'nuxt/no-cjs-in-config': 'off',
-    'no-console': 'off',
+    "nuxt/no-cjs-in-config": "off",
+    "no-console": "off",
     semi: ["error", "always"],
-    "prettier/prettier": ["error", { "semi": true }],
-    'vue/require-default-prop': 'off',
-    'vue/no-v-html': 'off'
+    "prettier/prettier": ["error", { semi: true }],
+    "vue/require-default-prop": "off",
+    "vue/no-v-html": "off",
+    "vue/multiline-html-element-content-newline": [
+      "error",
+      {
+        ignoreWhenEmpty: true,
+        allowEmptyLines: false
+      }
+    ]
   }
-}
+};

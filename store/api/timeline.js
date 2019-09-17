@@ -54,7 +54,10 @@ export const getters = {
     let matched = getters.allTags
       .filter(tag => tag.includes(value) || state.search.tags.includes(tag))
       .map(tag => {
-        return { tag, selected: state.search.tags.includes(tag) };
+        return {
+          tag,
+          selected: state.search.tags.includes(tag)
+        };
       });
 
     matched = lodash.orderBy(matched, ["selected"], ["desc"]);

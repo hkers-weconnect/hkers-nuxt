@@ -35,9 +35,7 @@
 
     <div class="title-block">
       <div class="date">{{ parseDate(datetime) }}</div>
-      <nuxt-link
-        :to="localePath({ name: 'timeline-uuid', params: { uuid: uuid } })"
-      >
+      <nuxt-link :to="localePath({ name: 'timeline-id', params: { id: id } })">
         <div class="title" v-html="title" />
       </nuxt-link>
       <div class="tags">
@@ -55,6 +53,7 @@ import moment from "moment";
 
 export default {
   props: {
+    id: String,
     uuid: String,
     datetime: String,
     title: String,

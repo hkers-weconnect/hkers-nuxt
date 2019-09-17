@@ -8,14 +8,13 @@
     />
     <div class="container">
       <section class="head-section">
-        <div class="h2 title">{{ detail.title }}</div>
-        <div class="h4 datetime">Time: {{ datetime }}</div>
+        <div class="h2 title">{{ title }}</div>
+        <div class="h4 datetime">DateTime: {{ parsedDatetime }}</div>
         <div class="h4 location">Location: Prince Edward Station</div>
         <div class="tags">
-          <span class="tag">#MTR</span>
-          <span class="tag">#protest</span>
-          <span class="tag">#accusation</span>
-          <span class="tag">#hongkong</span>
+          <span v-for="(tag, index) in tags" :key="index" class="tag"
+            >#{{ tag }}</span
+          >
         </div>
       </section>
 
@@ -89,7 +88,7 @@
                 <div class="title">South China Morning Post</div>
                 <div class="date">
                   5:28pm, 6 Sep, 2019
-                  <div class="link-icon"></div>
+                  <div class="link-icon" />
                 </div>
               </a>
             </div>
@@ -109,7 +108,7 @@
 
           <!-- callout component -->
           <div class="template-callout">
-            <div class="link-icon"></div>
+            <div class="link-icon" />
             <a href="#">
               Hong Kong’s double trouble: ratings downgrade and stock exchange
               cyberattacks
@@ -150,7 +149,7 @@
                 <div class="title">Prince Edward MTR Spokeman</div>
                 <div class="date">
                   5:28pm, 6 Sep, 2019
-                  <div class="link-icon"></div>
+                  <div class="link-icon" />
                 </div>
               </a>
             </div>
@@ -158,7 +157,7 @@
 
           <!-- youtube component -->
           <div class="template-youtube">
-            <video data-type="youtube" src="3OnkZMdJgVY"></video>
+            <video data-type="youtube" src="3OnkZMdJgVY" />
             <div class="caption">
               Protesters set up a fire pit on the street in Mong Kok. Photo:
               Winson Wong
@@ -195,16 +194,23 @@ export default {
     uuid: String,
     title: String,
     content: String,
-    date: String,
+    datetime: String,
     image: String,
     video: String,
     sourceLink: Array,
     sourceName: String
   },
   computed: {
-    ...mapGetters("api/timeline_detail", ["relatedList", "detail"]),
-    datetime() {
-      return moment(this.detail.datetime).format("lll");
+    ...mapGetters("api/timeline_detail", ["relatedList", "tags"]),
+    parsedDatetime() {
+      return moment(this.datetime).format("ll");
+    }
+  },
+  watch: {
+    tags(state) {
+      if (state.length) {
+        this.$store.dispatch("api/timeline_detail/bindRelated", state);
+      }
     }
   }
 };
