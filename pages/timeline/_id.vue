@@ -4,7 +4,7 @@
     <div class="media-layer layer">
       <div class="layer-container">
         <div ref="scrollbar" class="scroll-container" ef-scrollbar>
-          <DetailPage v-bind="mediaDetail" />
+          <DetailPage v-bind="mediaDetail" :mode="mode" />
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
     <div class="official-layer layer">
       <div class="layer-container">
         <div ref="scrollbar" class="scroll-container" ef-scrollbar>
-          <DetailPage v-bind="officialDetail" />
+          <DetailPage v-bind="officialDetail" :mode="mode" />
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       // temp
-      mode: "media-mode"
+      mode: "media_news"
     };
   },
   computed: {
@@ -55,22 +55,15 @@ export default {
       return this.$route.params.id;
     }
   },
-  watch: {
-    mode(state) {
-      if (state === "media-mode") {
-      } else if (state === "official-mode") {
-      }
-    }
-  },
   created() {
     this.$store.dispatch("api/timeline_detail/bind", this.id);
   },
   methods: {
     switchMode() {
-      if (this.mode === "media-mode") {
-        this.mode = "official-mode";
-      } else if (this.mode === "official-mode") {
-        this.mode = "media-mode";
+      if (this.mode === "media_news") {
+        this.mode = "offical_news";
+      } else if (this.mode === "offical_news") {
+        this.mode = "media_news";
       }
     },
 
@@ -160,11 +153,11 @@ $switcher-width: 50px;
 }
 
 // go media mode
-// .media-mode {
+// .media_news {
 // }
 
 // go official mode
-.official-mode {
+.offical_news {
   .switcher {
     transform: translateX(100%) translateX(-200%) translateX($switcher-width);
 

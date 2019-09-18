@@ -99,6 +99,9 @@ export const getters = {
 export const actions = {
   // get api
   bind: firestoreAction(context => {
-    return context.bindFirestoreRef("list", db.collection("timeline"));
+    return context.bindFirestoreRef(
+      "list",
+      db.collection("timeline").where("state", "==", "publish")
+    );
   })
 };

@@ -68,6 +68,14 @@ select {
 }
 // >>> end of global settings
 
+// >>> global sets
+.bg-cover{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+// >>> end of global sets
+
 // >>> color
 .bg-white {
   background-color: #fff;

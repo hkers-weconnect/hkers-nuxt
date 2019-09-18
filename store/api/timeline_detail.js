@@ -1,11 +1,14 @@
-// import lodash from "lodash";
+import lodash from "lodash";
 import { db } from "@/db";
 
 export const state = () => ({
   // the display result
   detail: null,
   mediaDetail: null,
-  officialDetail: null
+  officialDetail: null,
+
+  relatedList: [],
+  nextDetail: null
 });
 
 export const mutations = {
@@ -18,6 +21,14 @@ export const mutations = {
   },
   setOfficialDetail(state, detail) {
     state.officialDetail = detail;
+  },
+
+  setRelatedList(state, list) {
+    state.relatedList = list;
+  },
+
+  setNextDetail(state, detail) {
+    state.nextDetail = detail;
   }
 };
 
@@ -30,9 +41,15 @@ export const getters = {
     return [];
   },
 
-  // get related event, used for timeline detail page
-  relatedList: state => {
-    console.log("get relatedList", state.detail);
+  // get related list for timeline detail page, order by latest date
+  getRelatedList: state => {
+    const relatedList = state.relatedList;
+    if (relatedList.length > 1) {
+      relatedList.sort((a, b) => {
+        return new Date(b.datetime) - new Date(a.datetime);
+      });
+    }
+    return relatedList;
   }
 };
 
@@ -40,34 +57,30 @@ export const actions = {
   // get api
   bind: ({ commit }, id) => {
     db.collection("timeline")
-      .doc(id)
+      .where("state", "==", "publish")
+      // .orderBy("datetime")
       .get()
       .then(snapshot => {
-        const document = snapshot.data();
+        const document = snapshot.docs.find(doc => doc.id === id).data();
+        commit("setDetail", document);
+        commit("setMediaDetail", document.media_news[0]);
+        commit("setOfficialDetail", document.offical_news[0]);
 
-        if (document) {
-          commit("setDetail", document);
-        }
+        const relatedDocs = snapshot.docs
+          .filter(
+            doc =>
+              // intersection find same tags
+              lodash.intersection(doc.data().tags, document.tags).length > 0 &&
+              doc.id !== id
+          )
+          .map(doc => doc.data());
+        commit("setRelatedList", relatedDocs);
 
-        if (document.media_news.length) {
-          commit("setMediaDetail", document.media_news[0]);
-        }
-
-        if (document.offical_news.length) {
-          commit("setOfficialDetail", document.offical_news[0]);
-        }
-
+        // if (snapshot.docs.length > 2) {
         console.log(document);
-      });
-  },
-
-  bindRelated: ({ commit }, tags) => {
-    db.collection("timeline")
-      .where("tags", "array-contains", tags)
-      .get()
-      .then(querySnapshot => {
-        const documents = querySnapshot.docs.map(doc => doc.data());
-        console.log(documents);
+        // const nextDetail = snapshot.docs[1].data();
+        // commit("setNextDetail", nextDetail);
+        // }
       });
   }
 };

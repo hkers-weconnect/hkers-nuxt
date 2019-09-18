@@ -3,7 +3,7 @@
     <div class="media-news">
       <div class="banner-wrapper">
         <nuxt-link
-          :to="localePath({ name: 'timeline-uuid', params: { uuid: uuid } })"
+          :to="localePath({ name: 'timeline-id', params: { id: id } })"
         >
           <div
             class="banner"
@@ -18,9 +18,7 @@
       </div>
     </div>
     <div class="official-news">
-      <nuxt-link
-        :to="localePath({ name: 'timeline-uuid', params: { uuid: uuid } })"
-      >
+      <nuxt-link :to="localePath({ name: 'timeline-id', params: { id: id } })">
         <div
           class="banner"
           :style="

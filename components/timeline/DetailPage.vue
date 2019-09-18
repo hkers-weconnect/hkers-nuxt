@@ -163,18 +163,74 @@
               Winson Wong
             </div>
           </div>
+
+          <hr />
+
+          <div class="d-flex flex-wrap">
+            <!-- related and refernce -->
+            <!-- related articles -->
+            <div class="related-list">
+              <div class="title">Related Articles:</div>
+
+              <div
+                v-for="item in getRelatedList"
+                :key="item.id"
+                class="related-card"
+              >
+                <div
+                  class="thumbnail bg-cover"
+                  :style="`background-image: url('${item[mode][0].image}')`"
+                ></div>
+                <div class="content">
+                  <div class="title">{{ item[mode][0].title }}</div>
+                  <div class="datetime">DateTime: {{ item.datetime }}</div>
+                  <div class="location">Location: temp</div>
+                  <div class="tags">
+                    <span
+                      v-for="(tag, index) in item.tags"
+                      :key="index"
+                      class="tag"
+                      >#{{ tag }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- reference -->
+            <div class="reference-list">
+              <div class="title">References:</div>
+
+              <div
+                v-for="item in getRelatedList"
+                :key="item.id"
+                class="related-card"
+              >
+                <div class="link-icon" />
+                <div class="title">
+                  Hong Kong protests: tear gas fired on Nathan Mong Kok and Yau
+                  Ma Tei
+                </div>
+                <div class="name">South China Morning Post</div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <hr />
-
-        <!-- related and refernce -->
-        <!-- related articles -->
-        <div class="related-list">{{ relatedList }}</div>
-
-        <!-- reference -->
       </section>
 
       <!-- next event -->
+      <section v-if="nextDetail" class="next-detail">
+        <div class="container">
+          <div class="d-flex justify-content-between">
+            <div class="content">
+              <div class="title">{{ nextDetail.title }}</div>
+              <div class="datetime">Datetime: {{ nextDetail.datetime }}</div>
+              <div class="location">Location: Temp</div>
+            </div>
+            <div class="arrow"></div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -182,7 +238,7 @@
 <script>
 import moment from "moment";
 
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import plyr from "@/mixins/plyr";
 
 export default {
@@ -191,7 +247,6 @@ export default {
     mode: String,
 
     // detail field;
-    uuid: String,
     title: String,
     content: String,
     datetime: String,
@@ -201,16 +256,10 @@ export default {
     sourceName: String
   },
   computed: {
-    ...mapGetters("api/timeline_detail", ["relatedList", "tags"]),
+    ...mapState("api/timeline_detail", ["nextDetail"]),
+    ...mapGetters("api/timeline_detail", ["tags", "getRelatedList"]),
     parsedDatetime() {
       return moment(this.datetime).format("ll");
-    }
-  },
-  watch: {
-    tags(state) {
-      if (state.length) {
-        this.$store.dispatch("api/timeline_detail/bindRelated", state);
-      }
     }
   }
 };
@@ -254,5 +303,82 @@ export default {
 
 .detail-content {
   padding: 3rem 0;
+}
+
+.related-list {
+  width: 60%;
+
+  & > .title {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .related-card {
+    display: flex;
+
+    .thumbnail {
+      position: relative;
+      width: 250px;
+      min-width: 250px;
+
+      &:before {
+        content: "";
+        display: block;
+        padding-top: (130 / 230 * 100%);
+      }
+    }
+
+    .content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 0.5rem;
+    }
+
+    .title {
+      margin-bottom: 0.5rem;
+    }
+
+    .tags {
+      margin-top: 0.5rem;
+
+      .tag {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+.reference-list {
+  width: 40%;
+
+  & > .title {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .related-card {
+    position: relative;
+
+    .title {
+      padding-left: 2rem;
+    }
+    .name {
+      padding-left: 2rem;
+      margin-top: 0.5rem;
+      @include h-small();
+    }
+  }
+
+  .link-icon {
+    position: absolute;
+    left: 0rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    background-color: $template-grey;
+  }
 }
 </style>
